@@ -1,0 +1,241 @@
+.app {
+  background: #e1e0cc;
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 11.40625vh;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 20px 12px;
+}
+
+.notif-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: none;
+  border-radius: 50px;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Card */
+.card {
+  margin: auto 14px 7.96875vh;
+  background: #d6d2bd;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 61.5625vh;
+  border: 1px solid #9f9e8a;
+  position: relative;
+}
+
+.card-top {
+  padding: 26px 22px 28px;
+  flex: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.card-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.trident-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: grayscale(1) contrast(100) invert(1);
+  mix-blend-mode: multiply;
+}
+
+.reserve-title {
+  font-size: 30px;
+  font-weight: 500;
+  color: #1c1c1c;
+  letter-spacing: -0.3px;
+}
+
+.field {
+  margin-bottom: 30px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #555644;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.value {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  color: #1c1c1c;
+  letter-spacing: -0.2px;
+}
+
+.value-bold {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* Scrolling ticker */
+.ticker-wrap {
+  overflow: hidden;
+  background: #6b4720;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: ticker-scroll 54s linear infinite;
+}
+
+.ticker-text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  padding-right: 0;
+  white-space: nowrap;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Card bottom */
+.card-bottom {
+  padding: 50px 22px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.person-label {
+  font-size: 14px;
+  color: #555644;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.person-name {
+  font-size: 27px;
+  font-weight: 600;
+  color: #1c1c1c;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+}
+
+.plus-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fc8817;
+  border: none;
+  color: #000000;
+  font-size: 44px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  box-shadow: 0 2px 8px rgba(240, 131, 18, 0.35);
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 11.40625vh;
+  background: #ffffff;
+  display: flex;
+  border-top: 1px solid #e8e6e0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 4px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c1c1c;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.nav-item.active {
+  color: #1c1c1c;
+}
+
+.nav-icon {
+  width: 52px;
+  height: 52px;
+}
+
+.reserve-icon {
+  width: 25px;
+  height: 35px;
+}
+
+.services-icon {
+  width: 32px;
+  height: 35px;
+}
+
+.vacancies-icon {
+  width: 47px;
+  height: 35px;
+}
+
+.menu-icon {
+  width: 26px;
+  height: 35px;
+  flex-direction: column;
+}
+
+.menu-icon span {
+  display: block;
+  width: 97%;
+  height: 3px;
+  margin-top: 6px;
+  background: currentColor;
+}
