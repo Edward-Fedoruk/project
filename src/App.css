@@ -33,7 +33,7 @@
 
 /* Card */
 .card {
-  margin: auto 14px 7.96875vh;
+  margin: auto 35px 7.96875vh;
   background: #d6d2bd;
   border-radius: 10px;
   overflow: hidden;
@@ -147,7 +147,7 @@
 }
 
 .person-name {
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 600;
   color: #1c1c1c;
   line-height: 1.18;
