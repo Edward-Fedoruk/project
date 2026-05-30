@@ -21,10 +21,10 @@ const TICKER = TICKER_SEGMENT.repeat(6)
 function ReserveIcon({ active }: { active: boolean }) {
   return active ? (
     <svg viewBox="0 0 31 32" fill="none" className="nav-icon reserve-icon">
-      <path d="M0.500042 1.49998L0.5 36.2989C0.5 36.8512 0.947718 37.2989 1.5 37.2989H29.5C30.0522 37.2989 30.5 36.8512 30.5 36.2989L30.5 1.49998C30.5 0.947697 30.0522 0.499981 29.5 0.499981H1.50004C0.947757 0.499981 0.500042 0.947697 0.500042 1.49998Z" fill="currentColor" stroke="currentColor"/>
+      <path d="M0.500042 1.49998L0.5 36.2989C0.5 36.8512 0.947718 37.2989 1.5 37.2989H29.5C30.0522 37.2989 30.5 36.8512 30.5 36.2989L30.5 1.49998C30.5 0.947697 30.0522 0.499981 29.5 0.499981H1.50004C0.947757 0.499981 0.500042 0.947697 0.500042 1.49998Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5"/>
       <path d="M1.5 17.5V3.5C1.5 2.39543 2.39543 1.5 3.5 1.5H27.5C28.6046 1.5 29.5 2.39543 29.5 3.5V17.5C29.5 18.6046 28.6046 19.5 27.5 19.5H3.5C2.39543 19.5 1.5 18.6046 1.5 17.5Z" fill="currentColor" stroke="currentColor" strokeWidth="2"/>
-      <path d="M1.5 25.5V22.5C1.5 21.3954 2.39543 20.5 3.5 20.5H27.5C28.6046 20.5 29.5 21.3954 29.5 22.5V25.5C29.5 26.6046 28.6046 27.5 27.5 27.5H3.5C2.39543 27.5 1.5 26.6046 1.5 25.5Z" fill="white" stroke="currentColor" strokeWidth="2"/>
-      <path d="M1.5 33.5V30.5C1.5 29.3954 2.39543 28.5 3.5 28.5H27.5C28.6046 28.5 29.5 29.3954 29.5 30.5V33.5C29.5 34.6046 28.6046 35.5 27.5 35.5H3.5C2.39543 35.5 1.5 34.6046 1.5 33.5Z" fill="white" stroke="currentColor" strokeWidth="2"/>
+      <path d="M1.5 22.5V19.5C1.5 18.3954 2.39543 17.5 3.5 17.5H27.5C28.6046 17.5 29.5 18.3954 29.5 19.5V22.5C29.5 23.6046 28.6046 24.5 27.5 24.5H3.5C2.39543 24.5 1.5 23.6046 1.5 22.5Z" fill="white" stroke="currentColor" strokeWidth="3"/>
+      <path d="M1.5 30.5V27.5C1.5 26.3954 2.39543 25.5 3.5 25.5H27.5C28.6046 25.5 29.5 26.3954 29.5 27.5V30.5C29.5 31.6046 28.6046 32.5 27.5 32.5H3.5C2.39543 32.5 1.5 31.6046 1.5 30.5Z" fill="white" stroke="currentColor" strokeWidth="3"/>
     </svg>
   ) : (
     <svg viewBox="0 0 31 32" fill="none" className="nav-icon reserve-icon">
