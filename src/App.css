@@ -34,7 +34,7 @@
 
 /* Card */
 .card {
-  margin: auto 35px 7.96875vh;
+  margin: auto 30px 7.96875vh;
   background: #d6d2bd;
   border-radius: 10px;
   overflow: hidden;
@@ -156,13 +156,13 @@
 }
 
 .plus-btn {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #fc8817;
   border: none;
   color: #000000;
-  font-size: 40px;
+  font-size: 38px;
   line-height: 1;
   cursor: pointer;
   display: flex;
