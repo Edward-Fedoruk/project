@@ -107,7 +107,7 @@
 .ticker-wrap {
   overflow: hidden;
   background: #6b4720;
-  height: 30px;
+  height: 28px;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -134,7 +134,7 @@
 
 /* Card bottom */
 .card-bottom {
-  padding: 50px 22px 20px;
+  padding: 45px 22px 20px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
