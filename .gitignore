@@ -23,3 +23,21 @@ dev-dist
 *.njsproj
 *.sln
 *.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Capacitor
+android/
+ios/
+capacitor.config.ts
+
+# Temp assets
+src/assets/nav1_*.png
+src/assets/nav2_*.png
+src/assets/sym_*.png
+src/assets/sym_*.bmp
+src/assets/sym_*.svg
+src/assets/icon-*.bmp
+src/assets/icon-*.png
