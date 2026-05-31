@@ -195,6 +195,11 @@
   letter-spacing: -0.3px;
 }
 
+.plus-btn:focus,
+.plus-btn:focus-visible {
+  outline: none;
+}
+
 .plus-btn {
   width: 44px;
   height: 44px;
