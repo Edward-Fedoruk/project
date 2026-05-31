@@ -16,9 +16,9 @@ export default defineConfig({
     },
 
     manifest: {
-      name: 'Резерв ID',
-      short_name: 'Резерв ID',
-      description: 'Резерв ID',
+      name: 'Резерв+',
+      short_name: 'Резерв+',
+      description: 'Резерв+',
       theme_color: '#e1e0cc',
       background_color: '#e1e0cc',
       display: 'standalone',
