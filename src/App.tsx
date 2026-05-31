@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { QRCodeSVG } from 'qrcode.react'
 import PWABadge from './PWABadge.tsx'
 import tridentImg from './assets/trident.webp'
@@ -99,6 +99,21 @@ const NAV_ITEMS: { id: Tab; label: string; Icon: React.FC<{ active: boolean }> }
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('reserve')
   const [flipped, setFlipped] = useState(false)
+  const controls = useAnimation()
+
+  const handleFlip = () => {
+    const next = !flipped
+    setFlipped(next)
+    controls.start({
+      rotateY: next ? -180 : 0,
+      scale: [1, 0.88, 1],
+      transition: {
+        duration: 0.6,
+        ease: [0.4, 0, 0.2, 1],
+        scale: { times: [0, 0.5, 1], duration: 0.6 },
+      },
+    })
+  }
 
   return (
     <div className="app">
@@ -110,10 +125,9 @@ export default function App() {
 
       <motion.div
         className="card-container"
-        onClick={() => setFlipped(f => !f)}
+        onClick={handleFlip}
         style={{ transformStyle: 'preserve-3d', cursor: 'pointer' }}
-        animate={{ rotateY: flipped ? -180 : 0, scale: [1, 0.88, 1] }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], scale: { times: [0, 0.5, 1] } }}
+        animate={controls}
       >
       <div className="card" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
         <div className="card-icon">
