@@ -5,6 +5,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { HiOutlineDocumentText } from "react-icons/hi2";
 import { LuRefreshCw } from "react-icons/lu";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { IoGridOutline, IoGrid } from "react-icons/io5";
 import PWABadge from "./PWABadge.tsx";
 import tridentImg from "./assets/trident.webp";
 import "./App.css";
@@ -105,57 +106,9 @@ function ReserveIcon({ active }: { active: boolean }) {
 }
 
 function ServicesIcon({ active }: { active: boolean }) {
-	return active ? (
-		<svg viewBox="0 0 40 33" fill="none" className="nav-icon services-icon">
-			<path
-				d="M1 16V2C1 1.44772 1.44771 1 2 1H14.5C15.0523 1 15.5 1.44772 15.5 2V9V16C15.5 16.5523 15.0523 17 14.5 17H2C1.44772 17 1 16.5523 1 16Z"
-				fill="currentColor"
-				stroke="currentColor"
-				strokeWidth="2"
-			/>
-			<path
-				d="M21 16V2C21 1.44772 21.4477 1 22 1H34.5C35.0523 1 35.5 1.44772 35.5 2V16C35.5 16.5523 35.0523 17 34.5 17H22C21.4477 17 21 16.5523 21 16Z"
-				fill="currentColor"
-				stroke="currentColor"
-				strokeWidth="2"
-			/>
-			<path
-				d="M21 36V22C21 21.4477 21.4477 21 22 21H34.5C35.0523 21 35.5 21.4477 35.5 22V36C35.5 36.5523 35.0523 37 34.5 37H22C21.4477 37 21 36.5523 21 36Z"
-				fill="currentColor"
-				stroke="currentColor"
-				strokeWidth="2"
-			/>
-			<path
-				d="M1 36V22C1 21.4477 1.44771 21 2 21H14.5C15.0523 21 15.5 21.4477 15.5 22V36C15.5 36.5523 15.0523 37 14.5 37H2C1.44772 37 1 36.5523 1 36Z"
-				fill="currentColor"
-				stroke="currentColor"
-				strokeWidth="2"
-			/>
-		</svg>
-	) : (
-		<svg viewBox="0 0 40 33" fill="none" className="nav-icon services-icon">
-			<path
-				d="M1 16V2C1 1.44772 1.44771 1 2 1H14.5C15.0523 1 15.5 1.44772 15.5 2V16C15.5 16.5523 15.0523 17 14.5 17H2C1.44772 17 1 16.5523 1 16Z"
-				stroke="currentColor"
-				strokeWidth="3"
-			/>
-			<path
-				d="M21 16V2C21 1.44772 21.4477 1 22 1H34.5C35.0523 1 35.5 1.44772 35.5 2V16C35.5 16.5523 35.0523 17 34.5 17H22C21.4477 17 21 16.5523 21 16Z"
-				stroke="currentColor"
-				strokeWidth="3"
-			/>
-			<path
-				d="M21 36V22C21 21.4477 21.4477 21 22 21H34.5C35.0523 21 35.5 21.4477 35.5 22V36C35.5 36.5523 35.0523 37 34.5 37H22C21.4477 37 21 36.5523 21 36Z"
-				stroke="currentColor"
-				strokeWidth="3"
-			/>
-			<path
-				d="M1 36V22C1 21.4477 1.44771 21 2 21H14.5C15.0523 21 15.5 21.4477 15.5 22V36C15.5 36.5523 15.0523 37 14.5 37H2C1.44772 37 1 36.5523 1 36Z"
-				stroke="currentColor"
-				strokeWidth="3"
-			/>
-		</svg>
-	);
+	return active
+		? <IoGrid size={27} className="nav-icon services-icon" style={{ width: 27, height: 35 }} />
+		: <IoGridOutline size={27} className="nav-icon services-icon" style={{ width: 27, height: 35 }} />;
 }
 
 function VacanciesIcon({ active }: { active: boolean }) {
@@ -234,7 +187,7 @@ function DocumentPanel({
 	const handleTouchMove = (e: React.TouchEvent) => {
 		const dy = e.touches[0].clientY - touchStartY.current;
 		const atTop = (scrollRef.current?.scrollTop ?? 0) === 0;
-		if (atTop && dy > 80) onClose();
+		if (atTop && dy > 40) onClose();
 	};
 
 	return (
@@ -412,7 +365,7 @@ function DocumentPanel({
 								<div className="doc-row-stacked">
 									<span className="doc-label">Email:</span>
 									<span className="doc-value">
-										ed.fedorukk@gmail.com
+										taras.25185@gmail.com
 									</span>
 								</div>
 								<div className="doc-row-stacked">
