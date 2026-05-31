@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import { BsInfoCircle } from "react-icons/bs";
 import { HiOutlineDocumentText } from "react-icons/hi2";
 import { LuRefreshCw } from "react-icons/lu";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import PWABadge from "./PWABadge.tsx";
 import tridentImg from "./assets/trident.webp";
 import "./App.css";
@@ -216,12 +217,249 @@ function BellIcon() {
 	);
 }
 
-function BottomSheet({
+function DocumentPanel({
 	open,
 	onClose,
 }: {
 	open: boolean;
 	onClose: () => void;
+}) {
+	const scrollRef = React.useRef<HTMLDivElement>(null);
+	const touchStartY = React.useRef(0);
+
+	const handleTouchStart = (e: React.TouchEvent) => {
+		touchStartY.current = e.touches[0].clientY;
+	};
+
+	const handleTouchMove = (e: React.TouchEvent) => {
+		const dy = e.touches[0].clientY - touchStartY.current;
+		const atTop = (scrollRef.current?.scrollTop ?? 0) === 0;
+		if (atTop && dy > 40) onClose();
+	};
+
+	return (
+		<AnimatePresence>
+			{open && (
+				<>
+					<motion.div
+						className="sheet-backdrop"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.2 }}
+						onClick={onClose}
+					/>
+					<motion.div
+						className="doc-panel"
+						initial={{ y: "100%" }}
+						animate={{ y: 0 }}
+						exit={{ y: "100%" }}
+						transition={{
+							type: "spring",
+							damping: 32,
+							stiffness: 380,
+						}}
+						drag="y"
+						dragConstraints={{ top: 0 }}
+						dragElastic={0.15}
+						dragMomentum={false}
+						style={{ touchAction: "none" }}
+						onDragEnd={(_, info) => {
+							if (info.offset.y > 30 || info.velocity.y > 200)
+								onClose();
+						}}
+					>
+						<div className="sheet-handle" />
+						<div
+							className="doc-scroll"
+							ref={scrollRef}
+							onTouchStart={handleTouchStart}
+							onTouchMove={handleTouchMove}
+							style={{ touchAction: "pan-y" }}
+						>
+							<div className="doc-header">
+								<h2 className="doc-header-title">Резерв ID</h2>
+								<img
+									src={tridentImg}
+									alt=""
+									className="trident-img doc-trident"
+								/>
+							</div>
+							<div className="doc-ticker-wrap">
+								<div className="ticker-track">
+									<span className="ticker-text">
+										{TICKER}
+									</span>
+									<span className="ticker-text">
+										{TICKER}
+									</span>
+								</div>
+							</div>
+							<div className="doc-card">
+								<div className="doc-name">
+									БІЛІНСЬКИЙ
+									<br />
+									Тарас
+									<br />
+									Петрович
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Військовозобов'язаний
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Дата народження:
+									</span>
+									<span className="doc-value">
+										25.07.1984
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">РНОКПП:</span>
+									<span className="doc-value">
+										3088724118
+									</span>
+								</div>
+							</div>
+							<div className="doc-card-group">
+								<div className="doc-card">
+									<div className="doc-row-inline">
+										<span className="doc-label">
+											Відстрочка до:
+										</span>
+										<span className="doc-value">
+											завершення <br /> мобілізації
+										</span>
+									</div>
+								</div>
+								<div className="doc-card">
+									<div className="doc-row-stacked">
+										<span className="doc-label">
+											Тип відстрочки:
+										</span>
+										<span className="doc-value">
+											п.3 ч.1 ст.23
+										</span>
+									</div>
+								</div>
+							</div>
+							<div className="doc-card">
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Постанова ВЛК:
+									</span>
+									<span className="doc-value">Придатний</span>
+								</div>
+								<div className="doc-row-inline">
+									<span className="doc-label">Дата ВЛК:</span>
+									<span className="doc-value">3.02.2026</span>
+								</div>
+							</div>
+							<div className="doc-card">
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										ТЦК та СП:
+									</span>
+									<span className="doc-value">
+										Івано-Франківський районний
+										територіальний центр комплектування та
+										соціальної підтримки
+									</span>
+								</div>
+							</div>
+							<div className="doc-card">
+								<div className="doc-row-inline">
+									<span className="doc-label">Звання</span>
+									<span className="doc-value">Солдат</span>
+								</div>
+								<div className="doc-row-inline">
+									<span className="doc-label">ВОС:</span>
+									<span className="doc-value">999097</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Категорія обліку:
+									</span>
+									<span className="doc-value">
+										Військовозобов'язаний
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-value">
+										Потребує проходження базової
+										загальновійськової підготовки, Солдат
+										резерву
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Номер в реєстрі Оберіг:
+									</span>
+									<span className="doc-value">
+										17072026923944840001
+									</span>
+								</div>
+							</div>
+							<div className="doc-card">
+								<div className="doc-row-stacked">
+									<span className="doc-label">Телефон:</span>
+									<span className="doc-value">
+										+380 95 156 6099
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">Email:</span>
+									<span className="doc-value">
+										ed.fedorukk@gmail.com
+									</span>
+								</div>
+								<div className="doc-row-stacked">
+									<span className="doc-label">
+										Адреса проживання:
+									</span>
+									<span className="doc-value">
+										Україна, Івано-Франківська область, м
+										Івано-Франківськ, Тролейбусна 18, кв. 35
+									</span>
+								</div>
+							</div>
+							<div className="doc-card doc-card-status">
+								<div className="doc-status-row">
+									<IoIosCheckmarkCircle
+										size={24}
+										color="rgb(56, 134, 35)"
+									/>
+									<span className="doc-value">
+										Дані уточнено вчасно
+									</span>
+								</div>
+								<div className="doc-row-inline">
+									<span className="doc-label">
+										Дата останнього уточнення даних:
+									</span>
+									<span className="doc-value">
+										17.07.2024
+									</span>
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				</>
+			)}
+		</AnimatePresence>
+	);
+}
+
+function BottomSheet({
+	open,
+	onClose,
+	onViewDocument,
+}: {
+	open: boolean;
+	onClose: () => void;
+	onViewDocument: () => void;
 }) {
 	return (
 		<AnimatePresence>
@@ -256,7 +494,7 @@ function BottomSheet({
 						}}
 					>
 						<div className="sheet-handle" />
-						<button className="sheet-item" onClick={onClose}>
+						<button className="sheet-item" onClick={onViewDocument}>
 							<BsInfoCircle size={26} />
 							<span>Переглянути документ</span>
 						</button>
@@ -290,6 +528,12 @@ export default function App() {
 	const [activeTab, setActiveTab] = useState<Tab>("reserve");
 	const [flipped, setFlipped] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [docOpen, setDocOpen] = useState(false);
+
+	const handleViewDocument = () => {
+		setMenuOpen(false);
+		setTimeout(() => setDocOpen(true), 350);
+	};
 	const controls = useAnimation();
 
 	const handleFlip = () => {
@@ -419,7 +663,12 @@ export default function App() {
 				))}
 			</nav>
 
-			<BottomSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
+			<BottomSheet
+				open={menuOpen}
+				onClose={() => setMenuOpen(false)}
+				onViewDocument={handleViewDocument}
+			/>
+			<DocumentPanel open={docOpen} onClose={() => setDocOpen(false)} />
 			<PWABadge />
 		</div>
 	);
