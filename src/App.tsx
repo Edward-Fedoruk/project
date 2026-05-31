@@ -112,7 +112,7 @@ export default function App() {
         className="card-container"
         onClick={() => setFlipped(f => !f)}
         style={{ transformStyle: 'preserve-3d', cursor: 'pointer' }}
-        animate={{ rotateY: flipped ? 180 : 0, scale: [1, 0.88, 1] }}
+        animate={{ rotateY: flipped ? -180 : 0, scale: [1, 0.88, 1] }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], scale: { times: [0, 0.5, 1] } }}
       >
       <div className="card" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
@@ -155,7 +155,7 @@ export default function App() {
         </div>
       </div>
 
-      <div className="card-back" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+      <div className="card-back" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(-180deg)' }}>
         <QRCodeSVG
           value="https://edward-fedoruk.github.io/project/"
           size={180}
