@@ -428,7 +428,7 @@ function DocumentPanel({
 							<div className="doc-card doc-card-status">
 								<div className="doc-status-row">
 									<IoIosCheckmarkCircle
-										size={24}
+										size={32}
 										color="rgb(56, 134, 35)"
 									/>
 									<span className="doc-value">
