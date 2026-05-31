@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
+import { BsInfoCircle } from "react-icons/bs";
+import { HiOutlineDocumentText } from "react-icons/hi2";
+import { LuRefreshCw } from "react-icons/lu";
 import PWABadge from "./PWABadge.tsx";
 import tridentImg from "./assets/trident.webp";
 import "./App.css";
@@ -20,15 +23,28 @@ function getTickerTime() {
 const TICKER_SEGMENT = getTickerTime();
 const TICKER = TICKER_SEGMENT.repeat(6);
 
-const MONTHS_UK = ['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня']
+const MONTHS_UK = [
+	"січня",
+	"лютого",
+	"березня",
+	"квітня",
+	"травня",
+	"червня",
+	"липня",
+	"серпня",
+	"вересня",
+	"жовтня",
+	"листопада",
+	"грудня",
+];
 
 function getQRExpiry() {
-  const d = new Date()
-  d.setFullYear(d.getFullYear() + 1)
-  return `${d.getDate()} ${MONTHS_UK[d.getMonth()]} ${d.getFullYear()}`
+	const d = new Date();
+	d.setFullYear(d.getFullYear() + 1);
+	return `${d.getDate()} ${MONTHS_UK[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-const QR_EXPIRY = getQRExpiry()
+const QR_EXPIRY = getQRExpiry();
 
 function ReserveIcon({ active }: { active: boolean }) {
 	return active ? (
@@ -200,78 +216,63 @@ function BellIcon() {
 	);
 }
 
-function InfoIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" strokeWidth="1.5" strokeLinecap="round">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="12" y1="8" x2="12" y2="8" strokeWidth="2"/>
-      <line x1="12" y1="11" x2="12" y2="16"/>
-    </svg>
-  )
-}
-
-function DocIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-      <polyline points="14 2 14 8 20 8"/>
-      <line x1="8" y1="13" x2="16" y2="13"/>
-      <line x1="8" y1="17" x2="16" y2="17"/>
-    </svg>
-  )
-}
-
-function RefreshIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1c1c1c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="23 4 23 10 17 10"/>
-      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-    </svg>
-  )
-}
-
-function BottomSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
-  return (
-    <AnimatePresence>
-      {open && (
-        <>
-          <motion.div
-            className="sheet-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={onClose}
-          />
-          <motion.div
-            className="sheet"
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            drag="y"
-            dragConstraints={{ top: 0 }}
-            dragElastic={0.1}
-            onDragEnd={(_, info) => { if (info.offset.y > 80) onClose() }}
-          >
-            <div className="sheet-handle" />
-            <button className="sheet-item" onClick={onClose}>
-              <InfoIcon />
-              <span>Переглянути документ</span>
-            </button>
-            <button className="sheet-item" onClick={onClose}>
-              <DocIcon />
-              <span>Завантажити PDF</span>
-            </button>
-            <button className="sheet-item" onClick={onClose}>
-              <RefreshIcon />
-              <span>Оновити документ</span>
-            </button>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  )
+function BottomSheet({
+	open,
+	onClose,
+}: {
+	open: boolean;
+	onClose: () => void;
+}) {
+	return (
+		<AnimatePresence>
+			{open && (
+				<>
+					<motion.div
+						className="sheet-backdrop"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.15 }}
+						onClick={onClose}
+					/>
+					<motion.div
+						className="sheet"
+						initial={{ y: "35vh" }}
+						animate={{ y: 0 }}
+						exit={{ y: "35vh" }}
+						transition={{
+							type: "spring",
+							damping: 30,
+							stiffness: 400,
+						}}
+						drag="y"
+						dragConstraints={{ top: 0 }}
+						dragElastic={0.2}
+						dragMomentum={false}
+						style={{ touchAction: "none" }}
+						onDragEnd={(_, info) => {
+							if (info.offset.y > 100 || info.velocity.y > 500)
+								onClose();
+						}}
+					>
+						<div className="sheet-handle" />
+						<button className="sheet-item" onClick={onClose}>
+							<BsInfoCircle size={26} />
+							<span>Переглянути документ</span>
+						</button>
+						<button className="sheet-item" onClick={onClose}>
+							<HiOutlineDocumentText size={26} />
+							<span>Завантажити PDF</span>
+						</button>
+						<button className="sheet-item" onClick={onClose}>
+							<LuRefreshCw size={26} />
+							<span>Оновити документ</span>
+						</button>
+					</motion.div>
+				</>
+			)}
+		</AnimatePresence>
+	);
 }
 
 const NAV_ITEMS: {
@@ -373,7 +374,10 @@ export default function App() {
 						</div>
 						<button
 							className="plus-btn"
-							onClick={(e) => { e.stopPropagation(); setMenuOpen(true) }}
+							onClick={(e) => {
+								e.stopPropagation();
+								setMenuOpen(true);
+							}}
 						>
 							+
 						</button>
@@ -388,7 +392,9 @@ export default function App() {
 						transform: "rotateY(-180deg)",
 					}}
 				>
-					<p className="card-back-expiry">QR-код дійсний до {QR_EXPIRY}</p>
+					<p className="card-back-expiry">
+						QR-код дійсний до {QR_EXPIRY}
+					</p>
 					<QRCodeSVG
 						value="eyJpZCI6IjE0MzI1Njc4OTAxMjM0IiwidHlwZSI6InJlc2VydmUiLCJsYXN0TmFtZSI6ItCR0IbQm9CG0J3QodCs0JrQmNCZIiwiZmlyc3ROYW1lIjoi0KLQkNGA0JDQoSIsInBhdHJvbnltaWMiOiLQn9CV0KLQoNC-0JLQmNCnIiwiZG9iIjoiMTk4NC0wNy0yNSIsImlwbiI6IjMxMjI4MzQ1NjciLCJkZWZlcnJhbCI6Im1vYmlsaXphdGlvbl9lbmQiLCJzaWduZWRfYXQiOiIyMDI2LTA1LTMxVDEwOjIzOjQ0WiIsImV4cGlyZXNfYXQiOiIyMDI3LTA1LTMxVDIzOjU5OjU5WiIsInNpZ25hdHVyZSI6IjJkMmY4YTNiNGM1ZTZmN2E4YjljMGQxZTJmM2E0YjVjNmQ3ZThmOWEwYjFjMmQzZTRmNWE2YjdjOGQ5ZTBmIn0="
 						size={240}
