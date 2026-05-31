@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { QRCodeSVG } from 'qrcode.react'
 import PWABadge from './PWABadge.tsx'
 import tridentImg from './assets/trident.webp'
 import './App.css'
@@ -96,6 +97,7 @@ const NAV_ITEMS: { id: Tab; label: string; Icon: React.FC<{ active: boolean }> }
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('reserve')
+  const [flipped, setFlipped] = useState(false)
 
   return (
     <div className="app">
@@ -105,6 +107,8 @@ export default function App() {
         </button>
       </div>
 
+      <div className="card-container" onClick={() => setFlipped(f => !f)}>
+      <div className={`card-inner${flipped ? ' flipped' : ''}`}>
       <div className="card">
         <div className="card-icon">
           <img src={tridentImg} alt="Тризуб" className="trident-img" />
@@ -143,6 +147,20 @@ export default function App() {
           </div>
           <button className="plus-btn">+</button>
         </div>
+      </div>
+
+      <div className="card-back">
+        <QRCodeSVG
+          value="https://edward-fedoruk.github.io/project/"
+          size={180}
+          bgColor="white"
+          fgColor="#1c1c1c"
+        />
+        <p className="card-back-title">Військовозобов'язаний</p>
+        <p className="card-back-name">БІЛІНСЬКИЙ<br/>Тарас Петрович</p>
+      </div>
+
+      </div>
       </div>
 
       <nav className="bottom-nav">
