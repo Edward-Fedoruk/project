@@ -111,7 +111,7 @@ export default function App() {
       <motion.div
         className="card-container"
         onClick={() => setFlipped(f => !f)}
-        style={{ transformStyle: 'preserve-3d', cursor: 'pointer' }}
+        style={{ transformStyle: 'preserve-3d', position: 'relative', width: '100%' }}
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       >
