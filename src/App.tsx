@@ -234,7 +234,7 @@ function DocumentPanel({
 	const handleTouchMove = (e: React.TouchEvent) => {
 		const dy = e.touches[0].clientY - touchStartY.current;
 		const atTop = (scrollRef.current?.scrollTop ?? 0) === 0;
-		if (atTop && dy > 40) onClose();
+		if (atTop && dy > 80) onClose();
 	};
 
 	return (

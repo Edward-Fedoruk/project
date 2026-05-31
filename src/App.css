@@ -338,7 +338,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  top: 60px;
+  top: 5px;
   background: #e1e0cc;
   border-radius: 20px 20px 0 0;
   z-index: 200;
@@ -435,13 +435,13 @@
 .doc-label {
   font-size: 14px;
   color: #000000;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .doc-value {
   font-size: 15px;
   color: #000000;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .doc-card-status { gap: 12px; }
