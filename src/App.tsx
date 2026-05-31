@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { QRCodeSVG } from 'qrcode.react'
 import PWABadge from './PWABadge.tsx'
 import tridentImg from './assets/trident.webp'
@@ -107,9 +108,14 @@ export default function App() {
         </button>
       </div>
 
-      <div className="card-container" onClick={() => setFlipped(f => !f)}>
-      <div className={`card-inner${flipped ? ' flipped' : ''}`}>
-      <div className="card">
+      <motion.div
+        className="card-container"
+        onClick={() => setFlipped(f => !f)}
+        style={{ transformStyle: 'preserve-3d', cursor: 'pointer' }}
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      >
+      <div className="card" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
         <div className="card-icon">
           <img src={tridentImg} alt="Тризуб" className="trident-img" />
         </div>
@@ -149,7 +155,7 @@ export default function App() {
         </div>
       </div>
 
-      <div className="card-back">
+      <div className="card-back" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
         <QRCodeSVG
           value="https://edward-fedoruk.github.io/project/"
           size={180}
@@ -160,8 +166,7 @@ export default function App() {
         <p className="card-back-name">БІЛІНСЬКИЙ<br/>Тарас Петрович</p>
       </div>
 
-      </div>
-      </div>
+      </motion.div>
 
       <nav className="bottom-nav">
         {NAV_ITEMS.map(({ id, label, Icon }) => (
